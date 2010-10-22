@@ -1,4 +1,4 @@
-<!--@subject  {{var order.getStoreGroupName()}}: Invoice # {{var invoice.increment_id}} for Order # {{var order.increment_id}} @-->
+<!--@subject  {{var order.getStoreGroupName()}}: Faktura # {{var invoice.increment_id}} for ordre # {{var order.increment_id}} @-->
 
 <style type="text/css">
     body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
@@ -19,20 +19,20 @@
             <tr>
                 <td valign="top">
                     <p>
-                        <strong>Hello {{var order.getCustomerName()}}</strong>,<br/>
-                        Thank you for your order from {{var order.getStoreGroupName()}}.
-                        You can check the status of your order by <a href="{{store url="customer/account/"}}" style="color:#1E7EC8;">logging into your account</a>.
-                        If you have any questions about your order please contact us at <a href="mailto:dummyemail@magentocommerce.com" style="color:#1E7EC8;">dummyemail@magentocommerce.com</a> or call us at <span class="nobr">(800) DEMO-NUMBER</span> Monday - Friday, 8am - 5pm PST.
+                        <strong>Hei {{var order.getCustomerName()}}</strong>,<br/>
+                        Takk for at du handlet hos {{var order.getStoreGroupName()}}.
+                        Du kan f&oslash;lg status p&aring; din bestilling ved &aring; <a href="{{store url="customer/account/"}}" style="color:#1E7EC8;">logge p&aring; din konto</a>.
+                        Hvis du har sp&oslash;rsm&aring;l vedr&oslash;rende ditt kundeforhold eller denne ordren, send en e-post til <a href="mailto:{{config path="trans_email/ident_general/email"}}" style="color:#1E7EC8;">{{config path="trans_email/ident_general/email"}}</a>.
                     </p>
                     <h3 style="border-bottom:2px solid #eee; font-size:1.05em; padding-bottom:1px; ">
-                        Your Invoice #{{var invoice.increment_id}} for Order #{{var order.increment_id}}
+                        Din faktura #{{var invoice.increment_id}} for ordre #{{var order.increment_id}}
                     </h3>
                     <table cellspacing="0" cellpadding="0" border="0" width="100%">
                         <thead>
                         <tr>
-                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Billing Information:</th>
+                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Betalingsinformasjon:</th>
                             <th width="3%"></th>
-                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Payment Method:</th>
+                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Betalingsmetode:</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -52,9 +52,9 @@
                     <table cellspacing="0" cellpadding="0" border="0" width="100%">
                         <thead>
                         <tr>
-                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Shipping Information:</th>
+                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Leveringsinformasjon:</th>
                             <th width="3%"></th>
-                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Shipping Method:</th>
+                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Leveringsmetode:</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -76,7 +76,7 @@
                     {{layout area="frontend" handle="sales_email_order_invoice_items" invoice=$invoice order=$order}}
                     <p>{{var comment}}</p>
                     <p>
-                        Thank you again,<br/><strong>{{var order.getStoreGroupName()}}</strong>
+                        Med vennlig hilsen,<br/><strong>{{var order.getStoreGroupName()}}</strong>
                     </p>
                 </td>
             </tr>

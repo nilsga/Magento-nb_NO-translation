@@ -23,8 +23,7 @@
                 <p>{{var comment}}</p>
                 <p>
                     Hvis det er noe du lurer p&aring;, kontakt oss p&aring; e-post
-                    <a href="mailto:eksempel@demobutikk" style="color:#1E7EC8;">eksempel@demobutikk</a> 
-                    eller ring (800) DEMO-NUMMER.
+                    <a href="mailto:{{config path="trans_email/ident_general/email"}}" style="color:#1E7EC8;">{{config path="trans_email/ident_general/email"}}</a>.
                 </p>
                 <p>Med vennlig hilsen,<br/><strong>{{var order.getStoreGroupName()}}</strong></p>
             </td>

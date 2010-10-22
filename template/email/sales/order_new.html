@@ -23,7 +23,7 @@
                         Takk for at du handlet hos {{var order.getStoreGroupName()}}.
                         N&aring;r dine varer er sendt vil du motta en e-post med informasjon om pakkesporing.
                         Du kan f&oslash;lge status for din bestilling ved &aring; <a href="{{store url="customer/account/"}}" style="color:#1E7EC8;">logge p&aring; din konto</a>.
-                        Hvis det er noe du lurer p&aring; kan du kontakte oss p&aring; e-post <a href="mailto:demo@butikk" style="color:#1E7EC8;">demo@butikk</a> eller ring <span class="nobr">(800) DEMO-NUMMER</span> Mandag - Fredag, mellom 08.00 og 17.00.
+                        Hvis du har sp&oslash;rsm&aring;l vedr&oslash;rende ditt kundeforhold eller denne ordren, send en e-post til <a href="mailto:{{config path="trans_email/ident_general/email"}}" style="color:#1E7EC8;">{{config path="trans_email/ident_general/email"}}</a>.
                     </p>
                     <p>Under er din ordrebekreftelse.</p>
 
@@ -73,7 +73,6 @@
                     {{var items_html}}
                     <br/>
                     {{var order.getEmailCustomerNote()}}
-					<p>Velkommen tilbake ved en senere anledning!</p>
                     <p>Med vennlig hilsen,<br/><strong>{{var order.getStoreGroupName()}}</strong></p>
                 </td>
             </tr>

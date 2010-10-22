@@ -1,55 +1,55 @@
 {* This is a comment block
 
 Use vars: {{var var_name}}
-*}<!--@subject Payment Transaction Failed Reminder @-->
+*}<!--@subject Betalingstransaksjon feilet @-->
 
 <table>
     <thead>
         <tr>
-            <th>Payment transaction failed.</th>
+            <th>Betalingstransaksjon feilet.</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>
                 <p>
-                    <b>Reason</b><br />
+                    <b>&Aring;rsak</b><br />
                     {{var reason}}
                 </p>
                 <p>
-                    <b>Checkout Type</b><br />
+                    <b>Utsjekkingstype</b><br />
                     {{var checkoutType}}
                 </p>
                 <p>
-                    <b>Customer:</b><br />
+                    <b>Kunde:</b><br />
                     <a href="mailto:{{var customerEmail}}">{{var customer}}</a> &lt;{{var customerEmail}}&gt;
                 </p>
                 <p>
-                    <b>Items</b><br />
+                    <b>Varer</b><br />
                     {{var items}}
                 </p>
                 <p>
-                    <b>Total:</b><br />
+                    <b>Totalsum:</b><br />
                     {{var total}}
                 </p>
                 <p>
-                    <b>Billing Address:</b><br />
+                    <b>Fakturaadresse:</b><br />
                     {{var billingAddress.format('html')}}
                 </p>
                 <p>
-                    <b>Shipping Address:</b><br />
+                    <b>Leveringsadresse:</b><br />
                     {{var shippingAddress.format('html')}}
                 </p>
                 <p>
-                    <b>Shipping Method:</b><br />
+                    <b>Leveringsmetode:</b><br />
                     {{var shippingMethod}}
                 </p>
                 <p>
-                    <b>Payment Method:</b><br />
+                    <b>Betalingsmetode:</b><br />
                     {{var paymentMethod}}
                 </p>
                 <p>
-                    <b>Date & Time:</b><br />
+                    <b>Dato & Tidspunkt:</b><br />
                     {{var dateAndTime}}
                 </p>
             </td>

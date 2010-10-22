@@ -20,11 +20,10 @@
                 <td valign="top">
                     <p>
                         <strong>Hei {{var order.getCustomerName()}}</strong>,<br/>
-                        TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST 
                         
                         Takk for at du handlet hos {{var order.getStoreGroupName()}}.
                         Du kan f&oslash;lg status p&aring; din bestilling ved &aring; <a href="{{store url="customer/account/"}}" style="color:#1E7EC8;">logge p&aring; din konto</a>.
-                        Hvis du har sp&oslash;rsm&aring;l vedr&oslash;rende ditt kundeforhold eller denne ordren, send en e-post til <a href="mailto:eksempel@demobutikk" style="color:#1E7EC8;">eksempel@demobutikk</a> eller ring <span class="nobr">(800) DEMO-NUMMER</span> Mandag - fredag, mellom 08.00 og 17.00.
+                        Hvis du har sp&oslash;rsm&aring;l vedr&oslash;rende ditt kundeforhold eller denne ordren, send en e-post til <a href="mailto:{{config path="trans_email/ident_general/email"}}" style="color:#1E7EC8;">{{config path="trans_email/ident_general/email"}}</a>.
                     </p>
                     <h3 style="border-bottom:2px solid #eee; font-size:1.05em; padding-bottom:1px; ">
                         Kreditnota #{{var creditmemo.increment_id}} for ordre #{{var order.increment_id}}

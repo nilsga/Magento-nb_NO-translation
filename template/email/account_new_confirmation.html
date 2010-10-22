@@ -1,4 +1,4 @@
-<!--@subject Account confirmation for {{var customer.name}} @-->
+<!--@subject Bekreftelse p&aring; registrering av konto for {{var customer.name}} @-->
 
 <style type="text/css">
 body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
@@ -20,13 +20,14 @@ body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;
                 <table cellspacing="0" cellpadding="0" border="0" width="650">
                     <tr>
                         <td valign="top">
-                            <p><strong>Dear {{var customer.name}}</strong>, <br/> Welcome to Magento Demo Store.</p>
+                            <p><strong>Kj&aelig;re {{var customer.name}}</strong>, <br/> Velkommen til {{var order.getStoreGroupName()}}.</p>
 
-                            <p>Your e-mail {{var customer.email}} must be confirmed before using it to log in to our store.</p>
+                            <p>Din epost-adresse {{var customer.email}} m&aring; bekreftes f&oslash;r du kan logge inn p&aring; din konto.</p>
 
-                            <p>To confirm the e-mail and instantly log in, please, use <a href="{{store url="customer/account/confirm/" _query_id=$customer.id _query_key=$customer.confirmation _query_back_url=$back_url}}" style="color:#1E7EC8;">this confirmation link</a>. This link is valid only once.</p>
+                            <p>For &aring; bekrefte epost-adressen, vennligst trykk p&aring; <a href="{{store url="customer/account/confirm/" _query_id=$customer.id _query_key=$customer.confirmation _query_back_url=$back_url}}" style="color:#1E7EC8;">denne lenken</a>. Lenken er gyldig bare en gang.</p>
 
-                            <p>If you have any questions about your account or any other matter, please feel free to contact us at <a href="mailto:dummyemail@magentocommerce.com" style="color:#1E7EC8;">dummyemail@magentocommerce.com</a> or by phone at (800) DEMO-STORE.</p>
+                            <p>Hvis du har noen sp&oslash;rsm&aring;l om din konto kan du kontakte oss p&aring; <a href="mailto:{{config path="trans_email/ident_general/email"}}" style="color:#1E7EC8;">{{config path="trans_email/ident_general/email"}}</a>.</p>
+							<p>Med vennlig hilsen, <br/><strong>{{var order.getStoreGroupName()}}</strong></p>
                         </td>
                     </tr>
                 </table>

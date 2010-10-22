@@ -1,4 +1,4 @@
-<!--@subject Take a look at {{var customer.name}}'s wishlist @-->
+<!--@subject Ta en titt p&aring; {{var customer.name}} sin &oslash;nskeliste @-->
 
 <style type="text/css">
     body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
@@ -19,8 +19,8 @@
                 <table cellspacing="0" cellpadding="0" border="0" width="650">
                     <tr>
                         <td valign="top">
-                        <p>Hey,<br/>
-                        Take a look at my wishlist from Magento Demo Store.</p>
+                        <p>Hei,<br/>
+	                    Ta en titt p&aring; min &oslash;nskeliste hos {{var order.getStoreGroupName()}}.</p>
 
 <p>{{var message}}</p>
 
@@ -28,9 +28,9 @@
 
                         <br/>
 
-{{depend salable}}<p><strong><a href="{{var addAllLink}}" style="color:#DC6809;">Add all items to shopping cart</a></strong> |{{/depend}} <strong><a href="{{var viewOnSiteLink}}" style="color:#1E7EC8;">View all wishlist items</a></strong></p>
+{{depend salable}}<p><strong><a href="{{var addAllLink}}" style="color:#DC6809;">Legg alle varer i handlekurven</a></strong> |{{/depend}} <strong><a href="{{var viewOnSiteLink}}" style="color:#1E7EC8;">Se alle varer i &oslash;nskelisten</a></strong></p>
 
-                        <p>Thank you,<br/><strong>{{var customer.name}}</strong></p>
+                        <p>Med vennlig hilsen,<br/><strong>{{var customer.name}}</strong></p>
 
 
                         </td>
