@@ -1,8 +1,21 @@
-<!--@subject  {{var order.getStoreGroupName()}}: Faktura # {{var invoice.increment_id}} for ordre # {{var order.increment_id}} @-->
-
-<style type="text/css">
-    body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
-</style>
+<!--@subject  {{var store.getFrontendName()}}: Faktura # {{var invoice.increment_id}} for ordre # {{var order.increment_id}} @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image",
+"htmlescape var=$billing.getName()":"Guest Customer Name",
+"var store.getFrontendName()":"Store Name",
+"var invoice.increment_id":"Invoice Id",
+"var order.increment_id":"Order Id",
+"var order.billing_address.format('html')":"Billing Address",
+"var payment_html":"Payment Details",
+"var order.shipping_address.format('html')":"Shipping Address",
+"var order.shipping_description":"Shipping Description",
+"layout handle=\"sales_email_order_invoice_items\" invoice=$invoice order=$order":"Invoice Items Grid",
+"var comment":"Invoice Comment"}
+@-->
+<!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
 
 <div style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;">
 <table cellspacing="0" cellpadding="0" border="0" width="98%" style="margin-top:10px; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
@@ -11,7 +24,7 @@
         <!-- [ header starts here] -->
         <table cellspacing="0" cellpadding="0" border="0" width="650">
             <tr>
-                <td valign="top"><a href="{{store url=""}}"><img src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="Magento"  style="margin-bottom:10px;" border="0"/></a></td>
+                <td valign="top"><a href="{{store url=""}}"><img src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="{{var store.getFrontendName()}}"  style="margin-bottom:10px;" border="0"/></a></td>
             </tr>
         </table>
         <!-- [ middle starts here] -->
@@ -19,9 +32,9 @@
             <tr>
                 <td valign="top">
                     <p>
-                        <strong>Hei {{var billing.getName()}}</strong>,<br/>
-                        Takk for at du handlet hos {{var order.getStoreGroupName()}}.
-                        Hvis du har sp&oslash;rsm&aring;l vedr&oslash;rende ditt kundeforhold eller denne ordren, send en e-post til <a href="mailto:{{config path="trans_email/ident_general/email"}}" style="color:#1E7EC8;">{{config path="trans_email/ident_general/email"}}</a>.
+                        <strong>Hei {{htmlescape var=$billing.getName()}}</strong>,<br/>
+                        Takk for din bestilling hos {{var store.getFrontendName()}}.
+                        Hvis du har noen spørsmål vedrørende din ordre kan du kontakte oss på <a href="mailto:{{config path='trans_email/ident_support/email'}}" style="color:#1E7EC8;">{{config path='trans_email/ident_support/email'}}</a> eller ringe oss på <span class="nobr">{{config path='general/store_information/phone'}}</span> i våre åpningstider {{customVar code=business_hours}}.
                     </p>
                     <h3 style="border-bottom:2px solid #eee; font-size:1.05em; padding-bottom:1px; ">
                         Din faktura #{{var invoice.increment_id}} for ordre #{{var order.increment_id}}
@@ -77,7 +90,7 @@
 
                     <p>{{var comment}}</p>
                     <p>
-                        Med vennlig hilsen,<br/><strong>{{var order.getStoreGroupName()}}</strong>
+                        Med vennlig hilsen,<br/><strong>{{var store.getFrontendName()}}</strong>
                     </p>
                 </td>
             </tr>

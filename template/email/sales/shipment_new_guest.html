@@ -1,8 +1,22 @@
-<!--@subject {{var order.getStoreGroupName()}}: Shipment # {{var shipment.increment_id}} for Order # {{var order.increment_id}} @-->
-
-<style type="text/css">
-    body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
-</style>
+<!--@subject {{var store.getFrontendName()}}: Leveringsbekreftelse # {{var shipment.increment_id}} for ordre # {{var order.increment_id}} @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image",
+"htmlescape var=$billing.getName()":"Guest Customer Name",
+"var store.getFrontendName()":"Store Name",
+"var shipment.increment_id":"Shipment Id",
+"var order.increment_id":"Order Id",
+"var order.billing_address.format('html')":"Billing Address",
+"var payment_html":"Payment Details",
+"var order.shipping_address.format('html')":"Shipping Address",
+"var order.shipping_description":"Shipping Description",
+"layout handle=\"sales_email_order_shipment_items\" shipment=$shipment order=$order":"Shipment Items Grid",
+"block type='core/template' area='frontend' template='email/order/shipment/track.phtml' shipment=$shipment order=$order":"Shipment Track Details",
+"var comment":"Shipment Comment"}
+@-->
+<!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
 
 <div style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;">
 <table cellspacing="0" cellpadding="0" border="0" width="98%" style="margin-top:10px; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
@@ -11,7 +25,7 @@
         <!-- [ header starts here] -->
         <table cellspacing="0" cellpadding="0" border="0" width="650">
             <tr>
-                <td valign="top"><a href="{{store url=""}}"><img src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="Magento"  style="margin-bottom:10px;" border="0"/></a></td>
+                <td valign="top"><a href="{{store url=""}}"><img src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="{{var store.getFrontendName()}}"  style="margin-bottom:10px;" border="0"/></a></td>
             </tr>
         </table>
         <!-- [ middle starts here] -->
@@ -19,23 +33,23 @@
             <tr>
                 <td valign="top">
                     <p>
-                        <strong>Hello {{var billing.getName()}}</strong>,<br/>
-                        Thank you for your order from {{var order.getStoreGroupName()}}.
-                        If you have any questions about your order please contact us at <a href="mailto:dummyemail@magentocommerce.com" style="color:#1E7EC8;">dummyemail@magentocommerce.com</a> or call us at <span class="nobr">(800) DEMO-NUMBER</span> Monday - Friday, 8am - 5pm PST.
+                        <strong>Hei {{htmlescape var=$order.getCustomerName()}}</strong>,<br/>
+                        Takk for din bestilling hos {{var store.getFrontendName()}}.
+                        Hvis du har noen spørsmål vedrørende din ordre kan du kontakte oss på <a href="mailto:{{config path='trans_email/ident_support/email'}}" style="color:#1E7EC8;">{{config path='trans_email/ident_support/email'}}</a> eller ringe oss på <span class="nobr">{{config path='general/store_information/phone'}}</span> i våre åpningstider {{customVar code=business_hours}}.
                     </p>
                     <p>
-                        Your shipping confirmation is below. Thank you again for your business.
+                        Nedenfor finner du din leveringsbekreftelse. Takk for handelen!
                     </p>
 
                     <h3 style="border-bottom:2px solid #eee; font-size:1.05em; padding-bottom:1px; ">
-                        Your Shipment #{{var shipment.increment_id}} for Order #{{var order.increment_id}}
+                        Leveringsbekreftelse #{{var shipment.increment_id}} for ordre #{{var order.increment_id}}
                     </h3>
                     <table cellspacing="0" cellpadding="0" border="0" width="100%">
                         <thead>
                         <tr>
-                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Billing Information:</th>
+                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Betalingsinformasjon:</th>
                             <th width="3%"></th>
-                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Payment Method:</th>
+                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Betalingsmetode:</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -54,9 +68,9 @@
                     <table cellspacing="0" cellpadding="0" border="0" width="100%">
                         <thead>
                         <tr>
-                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Shipping Information:</th>
+                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Leveringsbekreftelse:</th>
                             <th width="3%"></th>
-                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Shipping Method:</th>
+                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Leveringsmetode:</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -81,7 +95,7 @@
                     {{block type='core/template' area='frontend' template='email/order/shipment/track.phtml' shipment=$shipment order=$order}}
                     <p>{{var comment}}</p>
                     <p>
-                        Thank you again,<br/><strong>{{var order.getStoreGroupName()}}</strong>
+                        Vennlig hilsen,<br/><strong>{{var store.getFrontendName()}}</strong>
                     </p>
                 </td>
             </tr>

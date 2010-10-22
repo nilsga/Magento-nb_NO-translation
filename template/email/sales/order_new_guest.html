@@ -1,8 +1,21 @@
-<!--@subject {{var order.getStoreGroupName()}}: Ny bestilling # {{var order.increment_id}} @-->
-
-<style type="text/css">
-    body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
-</style>
+<!--@subject {{var store.getFrontendName()}}: Ordrebekreftelse # {{var order.increment_id}} @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image",
+"htmlescape var=$order.getBillingAddress().getName()":"Guest Customer Name",
+"var store.getFrontendName()":"Store Name",
+"var order.increment_id":"Order Id",
+"var order.getCreatedAtFormated('long')":"Order Created At (datetime)",
+"var order.getBillingAddress().format('html')":"Billing Address",
+"var payment_html":"Payment Details",
+"var order.getShippingAddress().format('html')":"Shipping Address",
+"var order.getShippingDescription()":"Shipping Description",
+"layout handle=\"sales_email_order_items\" order=$order":"Order Items Grid",
+"var order.getEmailCustomerNote()":"Email Order Note"}
+@-->
+<!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
 
 <div style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;">
 <table cellspacing="0" cellpadding="0" border="0" width="98%" style="margin-top:10px; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
@@ -11,7 +24,7 @@
         <!-- [ header starts here] -->
         <table cellspacing="0" cellpadding="0" border="0" width="650">
             <tr>
-                <td valign="top"><a href="{{store url=""}}"><img src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="Logo"  style="margin-bottom:10px;" border="0"/></a></td>
+                <td valign="top"><a href="{{store url=""}}"><img src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="{{var store.getFrontendName()}}"  style="margin-bottom:10px;" border="0"/></a></td>
             </tr>
         </table>
         <!-- [ middle starts here] -->
@@ -19,20 +32,20 @@
             <tr>
                 <td valign="top">
                     <p>
-                        <strong>Hei {{var order.getBillingAddress().getName()}}</strong>,<br/>
-                        Takk for at du handlet hos {{var order.getStoreGroupName()}}.
-                        N&aring;r dine varer er sendt vil du motta en e-post med informasjon om pakkesporing.
-                        Har du sp&oslash;rsm&aring;l vedr&oslash;rende din bestilling, kontakt oss via e-post <a href="mailto:demo@butikk" style="color:#1E7EC8;">demo@butikk</a> eller ring <span class="nobr">(800) DEMO-NUMMER</span> Mandag - Fredag, mellom 08.00 og 17.00.
+                        <strong>Hei {{htmlescape var=$order.getBillingAddress().getName()}}</strong>,<br/>
+                        Takk for din bestilling hos {{var store.getFrontendName()}}.
+                        Så snart varene er sendt vil du motta en epost med informasjon om sporing av forsendelsen.
+                        Hvis du har noen spørsmål vedrørende din ordre kan du kontakte oss på <a href="mailto:{{config path='trans_email/ident_support/email'}}" style="color:#1E7EC8;">{{config path='trans_email/ident_support/email'}}</a> eller ringe oss på <span class="nobr">{{config path='general/store_information/phone'}}</span> i våre åpningstider {{customVar code=business_hours}}.
                     </p>
-                    <p>Under er din ordrebekreftelse.</p>
+                    <p>Nedenfor finner du din ordrebekreftelse. Takk for handelen!</p>
 
                     <h3 style="border-bottom:2px solid #eee; font-size:1.05em; padding-bottom:1px; ">Din ordre #{{var order.increment_id}} <small>(bestilt {{var order.getCreatedAtFormated('long')}})</small></h3>
                     <table cellspacing="0" cellpadding="0" border="0" width="100%">
                         <thead>
                         <tr>
-                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Betalingsinformasjon:</th>
+                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Billing Information:</th>
                             <th width="3%"></th>
-                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Betalingsmetode:</th>
+                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Payment Method:</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -48,32 +61,35 @@
                         </tbody>
                     </table>
                     <br/>
+                    {{depend order.getIsNotVirtual()}}
                     <table cellspacing="0" cellpadding="0" border="0" width="100%">
                         <thead>
                         <tr>
-                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Leveringsinformasjon:</th>
+                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Shipping Information:</th>
                             <th width="3%"></th>
-                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Leveringsmetode:</th>
+                            <th align="left" width="48.5%" bgcolor="#d9e5ee" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">Shipping Method:</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td valign="top" style="padding:7px 9px 9px 9px; border:1px solid #bebcb7; border-top:0; background:#f8f7f5;">
                                 {{var order.getShippingAddress().format('html')}}
+                                &nbsp;
                             </td>
                             <td>&nbsp;</td>
                             <td valign="top" style="padding:7px 9px 9px 9px; border:1px solid #bebcb7; border-top:0; background:#f8f7f5;">
                                 {{var order.getShippingDescription()}}
+                                &nbsp;
                             </td>
                         </tr>
                         </tbody>
                     </table>
                     <br/>
-                    {{var items_html}}
+                    {{/depend}}
+                    {{layout handle="sales_email_order_items" order=$order}}
                     <br/>
                     {{var order.getEmailCustomerNote()}}
-					<p>Velkommen tilbake ved en senere anledning!</p>
-                    <p>Med vennlig hilsen,<br/><strong>{{var order.getStoreGroupName()}}</strong></p>
+                    <p>Thank you again,<br/><strong>{{var store.getFrontendName()}}</strong></p>
                 </td>
             </tr>
         </table>
